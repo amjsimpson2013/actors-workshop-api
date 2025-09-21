@@ -20,6 +20,7 @@ jobs:
 
     - name: Build
       run: |
+        webpack --mode=development
         npm ci
         npx webpack
         npm run build --if-present
