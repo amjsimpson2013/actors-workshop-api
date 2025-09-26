@@ -21,8 +21,10 @@ export async function getCurrentMonthEvents(): Promise<eventItem[]> {
         method: 'GET',
         headers: headers
     });
+    console.log(response);
 
     let mappedRes = await response.json().then((res: unknown) => { return res as gCalResponse });
 
-    return await mapGCalResponseToEventItems(mappedRes);
+
+    return await mapGCalResponseToEventItems(mappedRes); 
 }
