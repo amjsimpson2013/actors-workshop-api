@@ -3,6 +3,7 @@ import eventRoutes from './routes/eventRoutes';
 import cors from 'cors';
 import helmet from 'helmet';
 import { logger } from './middlewares/logger';
+import { migrateToLatest } from './utils/db/dbMigrator';
 
 const app: Application = express();
 const PORT = process.env['PORT'] || 3000;
@@ -17,6 +18,8 @@ app.use(helmet({
         }
     }
 }));
+
+migrateToLatest();
 
 app.use(logger);
 
