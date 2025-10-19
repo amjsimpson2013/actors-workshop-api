@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Kysely } from 'kysely'
 
 // replace `any` with your database interface.

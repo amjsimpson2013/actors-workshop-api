@@ -48,7 +48,6 @@ export class App {
 
     private initRoutes(): void {
         const advertisementRoutes: AdvertisementRoutes = new AdvertisementRoutes();
-        this.app.use('/api', eventRoutes);
-        this.app.use(advertisementRoutes.defineRoutes());
+        this.app.use('/api', eventRoutes, advertisementRoutes.defineRoutes());
     }
 }

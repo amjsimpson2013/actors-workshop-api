@@ -12,19 +12,20 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface Advertisements {
-  createdDate: Generated<Timestamp>;
-  createdUser: Generated<string>;
-  endDate: Timestamp;
+  created_date: Generated<Timestamp>;
+  created_user: Generated<string>;
+  end_date: Timestamp;
   id: Generated<number>;
-  image: Buffer;
-  linkedId: number | null;
-  linkTypeId: number | null;
+  image_name: string;
+  image_type: string;
+  link_type_id: number | null;
+  linked_id: number | null;
   name: string;
-  priorityId: number;
-  startDate: Timestamp;
+  priority_id: number;
+  start_date: Timestamp;
   summary: string | null;
-  updatedDate: Timestamp | null;
-  updatedUser: string | null;
+  updated_date: Timestamp | null;
+  updated_user: string | null;
 }
 
 export interface Events {
@@ -44,6 +45,6 @@ export interface PriorityTypes {
 export interface DB {
   advertisements: Advertisements;
   events: Events;
-  linkTypes: LinkTypes;
-  priorityTypes: PriorityTypes;
+  link_types: LinkTypes;
+  priority_types: PriorityTypes;
 }

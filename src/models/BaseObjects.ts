@@ -4,7 +4,7 @@ interface ICreatable {
 }
 
 interface IUpdatable {
-    updatedDate: Date | null;
+    updatedDate: Date | undefined;
     updatedUser: string | null; 
 }
 

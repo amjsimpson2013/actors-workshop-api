@@ -1,7 +1,6 @@
 import { response, Response } from 'express';
 
-export function ok<Type>(dto?: Type): Response {
-    const res: Response = response;
+export function ok<Type>(res: Response, dto?: Type): Response {
     const okCode: number = Results.OK.code;
     if (dto) {
         res.type('application/json');
@@ -12,33 +11,32 @@ export function ok<Type>(dto?: Type): Response {
     return res;
 }
 
-export function noContent(message?: string) {
+export function noContent(res: Response, message?: string) {
     const statusMessage = message ? message : Results.NO_CONTENT.defaultMessage;
-    return setJsonResponse(Results.NO_CONTENT.code, statusMessage);
+    return setJsonResponse(res, Results.NO_CONTENT.code, statusMessage);
 }
 
-export function unauthorized(message?: string) {
+export function unauthorized(res: Response, message?: string) {
     const errorMessage = message ? message : Results.UNAUTHORIZED.defaultMessage;
-    return setJsonResponse(Results.UNAUTHORIZED.code, errorMessage);
+    return setJsonResponse(res, Results.UNAUTHORIZED.code, errorMessage);
 }
 
-export function forbidden(message?: string) {
+export function forbidden(res: Response, message?: string) {
     const errorMessage = message ? message : Results.FORBIDDEN.defaultMessage;
-    return setJsonResponse(Results.FORBIDDEN.code, errorMessage);
+    return setJsonResponse(res, Results.FORBIDDEN.code, errorMessage);
 }
 
-export function notFound(message?: string) {
+export function notFound(res: Response, message?: string) {
     const errorMessage = message ? message : Results.NOT_FOUND.defaultMessage;
-    return setJsonResponse(Results.NOT_FOUND.code, errorMessage);
+    return setJsonResponse(res, Results.NOT_FOUND.code, errorMessage);
 }
 
-export function uncaught(message?: string) {
+export function uncaught(res: Response, message?: string) {
     const errorMessage = message ? message : Results.INTERNAL_SERVER_ERROR.defaultMessage;
-    return setJsonResponse(Results.INTERNAL_SERVER_ERROR.code, errorMessage);
+    return setJsonResponse(res, Results.INTERNAL_SERVER_ERROR.code, errorMessage);
 }
 
-function setJsonResponse(code: number, message: string): Response {
-    const res: Response = response;
+function setJsonResponse(res: Response, code: number, message: string): Response {
     res.status(code).json({ message });
     return response;
 }

@@ -1,6 +1,5 @@
 import { eventItem } from "../models/eventItem";
 import { gCalResponse } from "../models/gCalResponse";
-import { mapGCalResponseToEventItems } from "../utils/mapper";
 
 const calendarId = process.env["GOOGLE_CAL_ID"];
 const apiKey = process.env["GOOGLE_CLOUD_API"];
@@ -9,7 +8,7 @@ export async function getCurrentMonthEvents(): Promise<eventItem[]> {
     const startDate = new Date();
     const endDate = new Date(new Date().setMonth(startDate.getMonth() + 1));
 
-    let headers = new Headers();
+    const headers = new Headers();
     headers.set('timeMin', startDate.toISOString());
     headers.set('timeMax', endDate.toISOString());
     headers.set('singleEvents', 'true');
@@ -22,7 +21,7 @@ export async function getCurrentMonthEvents(): Promise<eventItem[]> {
         headers: headers
     });
 
-    let mappedRes = await response.json().then((res: unknown) => { return res as gCalResponse });
+    const mappedRes = await response.json().then((res: unknown) => { return res as gCalResponse });
 
-    return await mapGCalResponseToEventItems(mappedRes);
+    return mappedRes.items as eventItem[];
 }

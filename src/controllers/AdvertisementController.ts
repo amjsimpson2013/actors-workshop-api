@@ -9,7 +9,7 @@ export class AdvertisementController {
     } 
 
     public async getTodaysAdvertisements(res: Response): Promise<Response> {
-        res = await this.service.getScheduledAdvertisements();
+        res = await this.service.getScheduledAdvertisements(res);
         return res;
     }
 }

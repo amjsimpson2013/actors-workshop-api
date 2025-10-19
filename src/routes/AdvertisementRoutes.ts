@@ -1,4 +1,4 @@
-import { Router, Response } from "express";
+import { Router, Response, Request } from "express";
 import { AdvertisementController } from "../controllers/AdvertisementController";
 import { advertisementController } from "../controllers";
 
@@ -7,7 +7,7 @@ export class AdvertisementRoutes {
     controller: AdvertisementController = advertisementController;
 
     public defineRoutes(): Router {
-        this.router.get('/advertisements', async (res: Response) => {
+        this.router.get('/advertisements', async (_req: Request, res: Response) => {
             return await this.controller.getTodaysAdvertisements(res);
         });
 

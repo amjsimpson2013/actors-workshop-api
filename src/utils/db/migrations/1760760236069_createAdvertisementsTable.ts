@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { sql, type Kysely } from 'kysely'
 
 // `any` is required here since migrations should be frozen in time. alternatively, keep a "snapshot" db interface.
@@ -24,7 +25,8 @@ export async function up(db: Kysely<any>): Promise<void> {
 		.addColumn('id', 'serial', (col) => col.primaryKey())
 		.addColumn('name', 'varchar', (col) => col.notNull())
 		.addColumn('summary', 'varchar')
-		.addColumn('image', 'bytea', (col) => col.notNull())
+		.addColumn('image_name', 'varchar', (col) => col.notNull())
+		.addColumn('image_type', 'varchar', (col) => col.notNull())
 		.addColumn('link_type_id', 'integer', 
 			(col) => col.references('link_types.id').onDelete('no action'))
 		.addColumn('linked_id', 'integer',
@@ -42,4 +44,18 @@ export async function up(db: Kysely<any>): Promise<void> {
 		.addColumn('updated_date', 'timestamp')
 		.addColumn('updated_user', 'varchar')
 		.execute();
+}
+
+export async function down(db: Kysely<any>): Promise<void> {
+	await db.schema
+		.dropTable('events');
+	
+	await db.schema
+		.dropTable('link_types');
+
+	await db.schema
+		.dropTable('priority_types');
+
+	await db.schema
+		.dropTable('advertisements');
 }
