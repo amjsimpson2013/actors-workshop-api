@@ -2,7 +2,7 @@ import express, { Application, Response, urlencoded } from 'express';
 import eventRoutes from './routes/eventRoutes';
 import cors from 'cors';
 import helmet from 'helmet';
-import { migrateToLatest } from './utils/db/dbMigrator';
+import { migrateToLatest } from './utils/db/Migrator';
 import { AdvertisementRoutes } from './routes/AdvertisementRoutes';
 
 export class App {

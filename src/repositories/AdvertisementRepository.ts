@@ -1,5 +1,5 @@
 import { AdvertisementDTO } from "../models/AdvertisementDto";
-import { db } from "../utils/db/actorsWorkshopContext";
+import { db } from "../utils/db/ActorsWorkshopContext";
 
 export class AdvertisementRepository {
     private readonly database = db;

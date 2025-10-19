@@ -1,4 +1,4 @@
-import { FileMigrationProvider, Kysely, Migrator, NO_MIGRATIONS, PostgresDialect } from "kysely";
+import { FileMigrationProvider, Kysely, Migrator, PostgresDialect } from "kysely";
 import { DB } from "kysely-codegen";
 import { Pool } from 'pg';
 import { promises as fs } from 'fs';
