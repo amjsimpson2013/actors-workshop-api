@@ -1,0 +1,1 @@
+npx kysely-codegen --config-file ./src/utils/db/config.kysely-codegenrc.json --url $(doppler secrets get DATABASE_URL --plain)

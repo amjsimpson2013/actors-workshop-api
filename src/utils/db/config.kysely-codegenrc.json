@@ -1,0 +1,5 @@
+{
+    "camelCase": false,
+    "dialect": "postgres",
+    "outFile": "context.d.ts"
+}
