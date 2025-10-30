@@ -4,6 +4,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { migrateToLatest } from './utils/db/Migrator';
 import { AdvertisementRoutes } from './routes/AdvertisementRoutes';
+import { WebhookRoutes } from './routes/WebhookRoutes';
+import { PostRoutes } from './routes/PostRoutes';
 
 export class App {
     private readonly app: Application = express();
@@ -48,6 +50,8 @@ export class App {
 
     private initRoutes(): void {
         const advertisementRoutes: AdvertisementRoutes = new AdvertisementRoutes();
-        this.app.use('/api', eventRoutes, advertisementRoutes.defineRoutes());
+        const webhookRoutes: WebhookRoutes = new WebhookRoutes();
+        const postRoutes: PostRoutes = new PostRoutes();
+        this.app.use('/api', eventRoutes, advertisementRoutes.defineRoutes(), webhookRoutes.defineRoutes(), postRoutes.defineRoutes());
     }
 }

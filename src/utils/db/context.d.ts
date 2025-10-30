@@ -37,6 +37,13 @@ export interface LinkTypes {
   name: string | null;
 }
 
+export interface Posts {
+  createdDate: Date | null;
+  fbId: string | null;
+  id: Generated<number>;
+  message: string | null;
+}
+
 export interface PriorityTypes {
   id: number;
   name: string | null;
@@ -46,5 +53,6 @@ export interface DB {
   advertisements: Advertisements;
   events: Events;
   link_types: LinkTypes;
+  posts: Posts;
   priority_types: PriorityTypes;
 }
