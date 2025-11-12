@@ -36,7 +36,21 @@ export interface Emails {
 }
 
 export interface Events {
+  description: string | null;
+  end_date: Timestamp | null;
+  event_type_id: number;
   id: Generated<number>;
+  image_name: string | null;
+  image_type: string | null;
+  name: string | null;
+  reoccurence_type_id: number | null;
+  start_date: Timestamp | null;
+  status_type_id: Generated<number>;
+}
+
+export interface EventTypes {
+  id: Generated<number>;
+  name: string | null;
 }
 
 export interface LinkTypes {
@@ -56,11 +70,24 @@ export interface PriorityTypes {
   name: string | null;
 }
 
+export interface ReoccurenceTypes {
+  id: Generated<number>;
+  name: string | null;
+}
+
+export interface StatusTypes {
+  id: Generated<number>;
+  name: string | null;
+}
+
 export interface DB {
   advertisements: Advertisements;
   emails: Emails;
+  event_types: EventTypes;
   events: Events;
   link_types: LinkTypes;
   posts: Posts;
   priority_types: PriorityTypes;
+  reoccurence_types: ReoccurenceTypes;
+  status_types: StatusTypes;
 }
