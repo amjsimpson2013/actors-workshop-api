@@ -6,6 +6,7 @@ import { migrateToLatest } from './utils/db/Migrator';
 import { AdvertisementRoutes } from './routes/AdvertisementRoutes';
 import { WebhookRoutes } from './routes/WebhookRoutes';
 import { PostRoutes } from './routes/PostRoutes';
+import { EmailRoutes } from './routes/EmailRoutes';
 
 export class App {
     private readonly app: Application = express();
@@ -52,6 +53,11 @@ export class App {
         const advertisementRoutes: AdvertisementRoutes = new AdvertisementRoutes();
         const webhookRoutes: WebhookRoutes = new WebhookRoutes();
         const postRoutes: PostRoutes = new PostRoutes();
-        this.app.use('/api', eventRoutes, advertisementRoutes.defineRoutes(), webhookRoutes.defineRoutes(), postRoutes.defineRoutes());
+        const emailRoutes: EmailRoutes = new EmailRoutes();
+        this.app.use('/api', eventRoutes, 
+            advertisementRoutes.defineRoutes(), 
+            webhookRoutes.defineRoutes(), 
+            postRoutes.defineRoutes(),
+            emailRoutes.defineRoutes());
     }
 }

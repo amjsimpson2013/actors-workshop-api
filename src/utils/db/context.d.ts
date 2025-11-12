@@ -28,6 +28,13 @@ export interface Advertisements {
   updated_user: string | null;
 }
 
+export interface Emails {
+  email: string;
+  id: Generated<number>;
+  message: string;
+  name: string;
+}
+
 export interface Events {
   id: Generated<number>;
 }
@@ -38,7 +45,7 @@ export interface LinkTypes {
 }
 
 export interface Posts {
-  createdDate: Date | null;
+  createdDate: Timestamp | null;
   fbId: string | null;
   id: Generated<number>;
   message: string | null;
@@ -51,6 +58,7 @@ export interface PriorityTypes {
 
 export interface DB {
   advertisements: Advertisements;
+  emails: Emails;
   events: Events;
   link_types: LinkTypes;
   posts: Posts;
