@@ -10,8 +10,6 @@ import { Pool } from 'pg';
 import { DB } from '../src/utils/db/context';
 import { PostgresDriver } from 'kysely';
 
-
-
 export default defineConfig({
 	dialect: {
 		createAdapter() {
