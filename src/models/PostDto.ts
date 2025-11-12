@@ -18,6 +18,6 @@ export function mapFromDb(table: Posts): PostDto {
     return {
         id: table.id.__select__,
         message: table.message,
-        createdDate: table.createdDate
+        createdDate: null
     }
 }
