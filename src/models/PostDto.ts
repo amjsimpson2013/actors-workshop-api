@@ -1,7 +1,7 @@
 import { Posts } from "../utils/db/context";
 
 export interface IPostData {
-    createdDate: Date | null;
+    createdDate: Date | undefined;
     id: number;
     message: string | null;
 }
@@ -18,6 +18,6 @@ export function mapFromDb(table: Posts): PostDto {
     return {
         id: table.id.__select__,
         message: table.message,
-        createdDate: null
+        createdDate: table.createdDate?.__select__
     }
 }

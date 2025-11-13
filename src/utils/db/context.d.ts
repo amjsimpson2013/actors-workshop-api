@@ -46,6 +46,8 @@ export interface Events {
   reoccurence_type_id: number | null;
   start_date: Timestamp | null;
   status_type_id: Generated<number>;
+  thumbnail_name: string | null;
+  thumbnail_type: string | null;
 }
 
 export interface EventTypes {
