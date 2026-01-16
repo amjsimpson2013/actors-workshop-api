@@ -13,8 +13,8 @@ export class EventsController {
         return res;
     }
 
-    public async getEventsByType(req: Request<{ eventTypeId: number }>, res: Response): Promise<Response> {
-        res = await this.service.getEventsByType(req, res);
+    public async getEventsByType(res: Response): Promise<Response> {
+        res = await this.service.getEventsByType(res);
         return res;
     }
 

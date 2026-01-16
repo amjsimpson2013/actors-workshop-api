@@ -1,5 +1,11 @@
 {
     "camelCase": false,
     "dialect": "postgres",
-    "outFile": "context.d.ts"
+    "outFile": "context.d.ts",
+    "defaultSchemas": ["public"],
+    "typeMapping": {
+        "timestamp": "Date",
+        "date": "Date",
+        "integer": "number"
+    }
 }

@@ -1,5 +1,5 @@
-import { EventDetailDto, EventSummaryDto } from "../models/EventDto";
-import { EventTypes } from "../models/Indexes";
+import { EventDetailDto, EventsByTypes, EventSummaryDto } from "../models/EventDto";
+import { EventTypeKVs } from "../models/Indexes";
 import { EventsRepository } from "../repositories/EventsRepository";
 import { noContent, notFound, ok } from "../utils/helpers/ResponseUtil";
 import { Response, Request } from 'express';
@@ -23,20 +23,27 @@ export class EventsService {
         return ok<EventSummaryDto[]>(res, eventSummaryDto);
     }
 
-    public async getEventsByType(req: Request<{ eventTypeId: number }>, res: Response) {
-        const eventTypeId = Number(req.params.eventTypeId);
-        const eventSummaryDtos: EventSummaryDto[] = await this.repo.getEventsByType(eventTypeId);
+    public async getEventsByType(res: Response) {
+        const eventTypes = await this.repo.getEventTypes();
+        const eventsByTypes: EventsByTypes[] = [];
+        for(const eventType of eventTypes) {
+            const eventSummaryDtos = await this.repo.getEventsByType(eventType.id);
+            eventsByTypes.push({
+                type: eventType,
+                events: eventSummaryDtos
+            });
+        }
 
-        if (!eventSummaryDtos || eventSummaryDtos.length <= 0) {
+        if (!eventsByTypes || eventsByTypes.length <= 0) {
             return noContent(res, 'No current events found');
         }
-        eventSummaryDtos.sort((event) => event.startDate?.getDate() ?? 0);
 
-        return ok<EventSummaryDto[]>(res, eventSummaryDtos);
+        return ok<EventsByTypes[]>(res, eventsByTypes);
     }
 
     public async getEventTypes(res: Response) {
-        return ok(res, EventTypes);
+        const results = await this.repo.getEventTypes();
+        return ok<EventTypeKVs>(res, results);
     }
 
     public async getEventById(req: Request<{ id: number }>, res: Response) {

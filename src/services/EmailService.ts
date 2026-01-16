@@ -12,7 +12,6 @@ export class EmailService {
 
     public async saveEmail(res: Response, req: Request) {
         const email = req.body;
-        console.log(email);
 
         if (email.name == null) return uncaught(res, 'A name is required to send message.');
         if (email.email == null) return uncaught(res, 'An email is required to send message.');

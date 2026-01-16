@@ -2,11 +2,7 @@ import express, { Application, Response, urlencoded } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { migrateToLatest } from './utils/db/Migrator';
-import { AdvertisementRoutes } from './routes/AdvertisementRoutes';
-import { WebhookRoutes } from './routes/WebhookRoutes';
-import { PostRoutes } from './routes/PostRoutes';
-import { EmailRoutes } from './routes/EmailRoutes';
-import { EventsRoutes } from './routes/EventsRoutes';
+import { advertisementRoutes, emailRoutes, eventsRoutes, postRoutes, webhookRoutes } from './utils/ServiceExtensions';
 
 export class App {
     private readonly app: Application = express();
@@ -50,12 +46,6 @@ export class App {
     }
 
     private initRoutes(): void {
-        const advertisementRoutes: AdvertisementRoutes = new AdvertisementRoutes();
-        const webhookRoutes: WebhookRoutes = new WebhookRoutes();
-        const postRoutes: PostRoutes = new PostRoutes();
-        const emailRoutes: EmailRoutes = new EmailRoutes();
-        const eventsRoutes: EventsRoutes = new EventsRoutes();
-
         this.app.use('/api',  
             advertisementRoutes.defineRoutes(), 
             webhookRoutes.defineRoutes(), 

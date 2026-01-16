@@ -36,6 +36,13 @@ export function uncaught(res: Response, message?: string) {
     return setJsonResponse(res, Results.INTERNAL_SERVER_ERROR.code, errorMessage);
 }
 
+export function isSuccessful(res: Response) {
+    if(res.statusCode === Results.OK.code) {
+        return true;
+    }
+    return false;
+}
+
 function setJsonResponse(res: Response, code: number, message: string): Response {
     res.status(code).json({ message });
     return response;

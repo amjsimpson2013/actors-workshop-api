@@ -1,14 +1,19 @@
 import { Router, Response, Request } from "express";
-import { AdvertisementController } from "../controllers/AdvertisementController";
-import { advertisementController } from "../controllers";
+import { AdvertisementService } from "../services/AdvertisementService";
 
 export class AdvertisementRoutes {
     router: Router = Router();
-    controller: AdvertisementController = advertisementController;
+    private readonly baseUrl: string;
+        private readonly service: AdvertisementService;
+    
+        constructor(baseUrl: string, service: AdvertisementService) {
+            this.baseUrl = baseUrl;
+            this.service = service;
+        }
 
     public defineRoutes(): Router {
-        this.router.get('/advertisements', async (_req: Request, res: Response) => {
-            return await this.controller.getTodaysAdvertisements(res);
+        this.router.get(this.baseUrl, async (_req: Request, res: Response) => {
+            return await this.service.getScheduledAdvertisements(res);
         });
 
         return this.router;

@@ -9,12 +9,10 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
   : ColumnType<T, T | undefined, T>;
 
-export type Timestamp = ColumnType<Date, Date | string, Date | string>;
-
 export interface Advertisements {
-  created_date: Generated<Timestamp>;
+  created_date: Generated<Date>;
   created_user: Generated<string>;
-  end_date: Timestamp;
+  end_date: Date;
   id: Generated<number>;
   image_name: string;
   image_type: string;
@@ -22,9 +20,9 @@ export interface Advertisements {
   linked_id: number | null;
   name: string;
   priority_id: number;
-  start_date: Timestamp;
+  start_date: Date;
   summary: string | null;
-  updated_date: Timestamp | null;
+  updated_date: Date | null;
   updated_user: string | null;
 }
 
@@ -37,14 +35,14 @@ export interface Emails {
 
 export interface Events {
   description: string | null;
-  end_date: Timestamp | null;
+  end_date: Date | null;
   event_type_id: number;
   id: Generated<number>;
   image_name: string | null;
   image_type: string | null;
   name: string | null;
   reoccurence_type_id: number | null;
-  start_date: Timestamp | null;
+  start_date: Date | null;
   status_type_id: Generated<number>;
   thumbnail_name: string | null;
   thumbnail_type: string | null;
@@ -61,7 +59,7 @@ export interface LinkTypes {
 }
 
 export interface Posts {
-  createdDate: Timestamp | null;
+  createdDate: Date | null;
   fbId: string | null;
   id: Generated<number>;
   message: string | null;

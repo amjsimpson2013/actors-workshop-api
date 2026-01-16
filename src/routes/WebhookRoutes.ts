@@ -1,18 +1,23 @@
 import { Router, Request, Response } from "express";
-import { webhookController } from "../controllers";
-import { WebhookController } from "../controllers/WebhookController";
+import { WebhookService } from "../services/WebhookService";
 
 export class WebhookRoutes {
     router: Router = Router();
-    controller: WebhookController = webhookController;
+    private readonly baseUrl: string;
+    private readonly service: WebhookService;
+
+    constructor(baseUrl: string, service: WebhookService) {
+        this.baseUrl = baseUrl;
+        this.service = service;
+    }
 
     public defineRoutes(): Router {
-        this.router.get('/webhook', async (req: Request, res: Response) => {
-            await this.controller.verifyWebhookCall(req, res);
+        this.router.get(this.baseUrl, async (req: Request, res: Response) => {
+            await this.service.verifyWebhookCall(req, res);
         });
 
-        this.router.post('/webhook', async (req: Request, res: Response) => {
-            await this.controller.savePost(req, res);
+        this.router.post(this.baseUrl, async (req: Request, res: Response) => {
+            await this.service.savePost(req, res);
         });
 
         return this.router;

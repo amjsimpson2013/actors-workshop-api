@@ -31,11 +31,11 @@ export function mapFromDb(table: Advertisements): AdvertisementDTO {
         linkTypeId: table.link_type_id,
         linkedId: table.linked_id,
         priorityId: table.priority_id,
-        startDate: table.start_date.__select__,
-        endDate: table.end_date.__select__,
+        startDate: table.start_date,
+        endDate: table.end_date,
         createdDate: table.created_date.__select__,
         createdUser: table.created_user.__select__,
-        updatedDate: table.updated_date?.__select__,
+        updatedDate: table.updated_date ?? undefined,
         updatedUser: table.updated_user
     }
 }
